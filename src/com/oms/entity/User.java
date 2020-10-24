@@ -1,5 +1,5 @@
 package com.oms.entity;
-// Generated 23 Oct, 2020 10:00:41 PM by Hibernate Tools 5.2.12.Final
+// Generated 24 Oct, 2020 11:46:44 AM by Hibernate Tools 5.2.12.Final
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,9 +1,7 @@
 package com.oms.entity;
-// Generated 23 Oct, 2020 10:00:41 PM by Hibernate Tools 5.2.12.Final
+// Generated 24 Oct, 2020 11:46:44 AM by Hibernate Tools 5.2.12.Final
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,7 +10,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,42 +22,32 @@ import javax.persistence.TemporalType;
 public class Orders implements java.io.Serializable {
 
 	private Integer id;
+	private Items items;
 	private User user;
 	private Date date;
 	private String shippingAddress;
 	private String recipientName;
 	private String recipientPhone;
 	private String paymentMethod;
+	private int itemQuantity;
 	private float total;
 	private String status;
-	private Set<OrderDetails> orderDetailses = new HashSet<OrderDetails>(0);
 
 	public Orders() {
 	}
 
-	public Orders(User user, Date date, String shippingAddress, String recipientName, String recipientPhone,
-			String paymentMethod, float total, String status) {
+	public Orders(Items items, User user, Date date, String shippingAddress, String recipientName,
+			String recipientPhone, String paymentMethod, int itemQuantity, float total, String status) {
+		this.items = items;
 		this.user = user;
 		this.date = date;
 		this.shippingAddress = shippingAddress;
 		this.recipientName = recipientName;
 		this.recipientPhone = recipientPhone;
 		this.paymentMethod = paymentMethod;
+		this.itemQuantity = itemQuantity;
 		this.total = total;
 		this.status = status;
-	}
-
-	public Orders(User user, Date date, String shippingAddress, String recipientName, String recipientPhone,
-			String paymentMethod, float total, String status, Set<OrderDetails> orderDetailses) {
-		this.user = user;
-		this.date = date;
-		this.shippingAddress = shippingAddress;
-		this.recipientName = recipientName;
-		this.recipientPhone = recipientPhone;
-		this.paymentMethod = paymentMethod;
-		this.total = total;
-		this.status = status;
-		this.orderDetailses = orderDetailses;
 	}
 
 	@Id
@@ -73,6 +60,16 @@ public class Orders implements java.io.Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "item_id", nullable = false)
+	public Items getItems() {
+		return this.items;
+	}
+
+	public void setItems(Items items) {
+		this.items = items;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -131,6 +128,15 @@ public class Orders implements java.io.Serializable {
 		this.paymentMethod = paymentMethod;
 	}
 
+	@Column(name = "item_quantity", nullable = false)
+	public int getItemQuantity() {
+		return this.itemQuantity;
+	}
+
+	public void setItemQuantity(int itemQuantity) {
+		this.itemQuantity = itemQuantity;
+	}
+
 	@Column(name = "total", nullable = false, precision = 12, scale = 0)
 	public float getTotal() {
 		return this.total;
@@ -147,15 +153,6 @@ public class Orders implements java.io.Serializable {
 
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "orders")
-	public Set<OrderDetails> getOrderDetailses() {
-		return this.orderDetailses;
-	}
-
-	public void setOrderDetailses(Set<OrderDetails> orderDetailses) {
-		this.orderDetailses = orderDetailses;
 	}
 
 }
