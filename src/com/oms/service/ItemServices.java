@@ -29,15 +29,20 @@ public class ItemServices {
 		
 		request.setAttribute("item", item);
 		
+		int quantity=1;
 		if (!request.getParameterMap().containsKey("quantity")) {
-			request.setAttribute("quantity", 1);
+			request.setAttribute("quantity", quantity);
 		}else {
-			String quantity=request.getParameter("quantity");
+			quantity=Integer.parseInt(request.getParameter("quantity"));
 			request.setAttribute("quantity",quantity);
 		}
 		
-		
-		
+		//put in session for checkout
+		request.getSession().setAttribute("item",item);
+		if(request.getSession().getAttribute("quantity")!=null) {
+			request.getSession().removeAttribute("quantity");
+		}
+		request.getSession().setAttribute("quantity",quantity);
 		
 	}
 	

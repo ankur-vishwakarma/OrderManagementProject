@@ -22,10 +22,14 @@
 					</tr>
 					
 					<tr>
-						<td>Quantity:</td>
-						<td><input type="text" name="quantity"  /></td>
+						<td><b>Quantity:</b></td>
+						<td>${quantity}</td>
 					</tr>
-						
+					
+					<tr>
+						<td><b>Total:</b></td>
+						<td><b>Rs.${item.price * quantity}</b></td>
+					</tr>
 				
 					<tr>
 						<td>Recipient Name:</td>
