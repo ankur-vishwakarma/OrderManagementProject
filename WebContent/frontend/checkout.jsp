@@ -62,6 +62,8 @@
 						Choose your payment method: &nbsp;&nbsp;&nbsp; <select
 							name="paymentMethod">
 							<option value="Cash On Delivery">Cash On Delivery</option>
+							<option value="Net Banking">Net Banking</option>
+							<option value="Wallet">Wallet</option>
 						</select>
 					</div>
 

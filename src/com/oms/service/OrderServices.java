@@ -33,6 +33,7 @@ public class OrderServices {
 		String city=request.getParameter("city");
 		String zipcode=request.getParameter("zipcode");
 		String country=request.getParameter("country");
+		String paymentMethod=request.getParameter("paymentMethod");
 		
 		User user=new User();
 		user.setId(1);
@@ -45,7 +46,7 @@ public class OrderServices {
 		order.setShippingAddress(address.concat(", ").concat(city).concat(", ").concat(country).concat("- ").concat(zipcode) );
 		order.setUser(user);
 		order.setTotal(quantity*item.getPrice());
-		order.setPaymentMethod("COD");
+		order.setPaymentMethod(paymentMethod);
 		
 		orderDao.create(order);
 		
